@@ -14,23 +14,22 @@ import javax.persistence.Table;
 @Table(name = "employees")
 @NamedQueries({
     @NamedQuery(
-            name = "getAllEmployees",
-            query="SELECT e FROM Employee AS e ORDER BY e.id DESC"
-     ),
+        name = "getAllEmployees",
+        query = "SELECT e FROM Employee AS e ORDER BY e.id DESC"
+    ),
     @NamedQuery(
-            name = "getEmployeesCount",
-            query= "SELECT COUNT(e) FROM Employee AS e"
-     ),
-     @NamedQuery(
-             name = "checkRegisterdCoad",
-             query = "SELECT e FROM Employee AS e WHERE e.delete_flag=0 AND e.code = :code AND e.password = :pass"
-     ),
-     @NamedQuery(
-             name = "checkLoginCodeAndPassword",
-             query = "SELECT e FROM Employee AS e WHERE e.delete_flag = 0 AND e.code = :code AND e.password = :pass"
-         )
+        name = "getEmployeesCount",
+        query = "SELECT COUNT(e) FROM Employee AS e"
+    ),
+    @NamedQuery(
+        name = "checkRegisteredCode",
+        query = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :code"
+    ),
+    @NamedQuery(
+        name = "checkLoginCodeAndPassword",
+        query = "SELECT e FROM Employee AS e WHERE e.delete_flag = 0 AND e.code = :code AND e.password = :pass"
+    )
 })
-
 @Entity
 public class Employee {
     @Id
@@ -38,34 +37,34 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "code",nullable=false,unique = true)
+    @Column(name = "code", nullable = false, unique = true)
     private String code;
 
-    @Column(name = "name",nullable=false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "password", length =64,nullable=false)
+    @Column(name = "password", length = 64, nullable = false)
     private String password;
 
-    @Column(name = "aomin_flag",nullable=false)
-    private Integer adomin_flag;
+    @Column(name = "admin_flag", nullable = false)
+    private Integer admin_flag;
 
-    @Column(name = "created_at",nullable=false)
-    private Timestamp createde_at;
+    @Column(name = "created_at", nullable = false)
+    private Timestamp created_at;
 
-    @Column(name = "updated_at",nullable=false)
+    @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
-    @Column(name = "delete_flag",nullable=false)
+    @Column(name = "delete_flag", nullable = false)
     private Integer delete_flag;
 
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
-
 
     public String getCode() {
         return code;
@@ -91,20 +90,20 @@ public class Employee {
         this.password = password;
     }
 
-    public Integer getAdomin_flag() {
-        return adomin_flag;
+    public Integer getAdmin_flag() {
+        return admin_flag;
     }
 
-    public void setAdomin_flag(Integer adomin_flag) {
-        this.adomin_flag = adomin_flag;
+    public void setAdmin_flag(Integer admin_flag) {
+        this.admin_flag = admin_flag;
     }
 
-    public Timestamp getCreatede_at() {
-        return createde_at;
+    public Timestamp getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatede_at(Timestamp createde_at) {
-        this.createde_at = createde_at;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
     public Timestamp getUpdated_at() {
@@ -122,6 +121,4 @@ public class Employee {
     public void setDelete_flag(Integer delete_flag) {
         this.delete_flag = delete_flag;
     }
-
-
 }
